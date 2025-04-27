@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CodéCraft</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="base.css">
+</head>
+
+<body>
+  
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand pixel-text" href="base.html">CodéCraft</a>
+      <div class="collapse navbar-collapse justify-content-end">
+        <ul class="navbar-nav">
+          <!-- Learn -->
+          <li class="nav-item dropdown position-static">
+            <a class="nav-link dropdown-toggle" href="#" id="learnDropdown"
+               role="button" data-bs-toggle="dropdown" aria-expanded="false">Learn</a>
+               <div class="dropdown-menu p-4 border-0 shadow"
+                    aria-labelledby="learnDropdown">
+              <div class="container">
+                <div class="row">
+                  <!-- Column: Recommended -->
+                  <div class="col-md-4">
+                    <h6 class="text-uppercase mb-3">Recommended</h6>
+                    <a class="dropdown-item d-flex align-items-center py-2" href="python.html">
+                      <img src="pics/card/pic1.webp" width="36" class="me-2 rounded">
+                      <div>
+                        <div class="fw-bold">Python</div>
+                        <small class="text-white">Learn the basics…</small>
+                      </div>
+                    </a>
+                    <a class="dropdown-item d-flex align-items-center py-2" href="HTML.html">
+                      <img src="pics/card/pic2.webp" width="36" class="me-2 rounded">
+                      <div>
+                        <div class="fw-bold">HTML</div>
+                        <small class="text-white">Create your first website…</small>
+                      </div>
+                    </a>
+                    <a href="practice.html" class="pixel-allcourses">All Courses →</a>
+                  </div>
+                  <!-- Column: Data Science -->
+                  <div class="col-md-2">
+                    <h6 class="text-uppercase mb-3">Data Science</h6>
+                    <a class="dropdown-item py-1" href="python.html">Python</a>
+                    <a class="dropdown-item py-1" href="IntermediatePython.html">Intermediate Python</a>
+                    <a class="dropdown-item py-1" href="NumPy.html">NumPy</a>
+                    <a class="dropdown-item py-1" href="SQL.html">SQL</a>
+                  </div>
+                  <!-- Column: Web Development -->
+                  <div class="col-md-2">
+                    <h6 class="text-uppercase mb-3">Web Dev</h6>
+                    <a class="dropdown-item py-1" href="HTML.html">HTML</a>
+                    <a class="dropdown-item py-1" href="CSS.html">CSS</a>
+                    <a class="dropdown-item py-1" href="JavaScript.html">JavaScript</a>
+                    <a class="dropdown-item py-1" href="React.html">React</a>
+                    <a class="dropdown-item py-1" href="p5.js.html">p5.js</a>
+                  </div>
+                  <!-- Column: Tools -->
+                  <div class="col-md-2">
+                    <h6 class="text-uppercase mb-3">Tools</h6>
+                    <a class="dropdown-item py-1" href="CommandLine.html">Command Line</a>
+                    <a class="dropdown-item py-1" href="Github.html">Git & GitHub</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="practice.html">Practice</a></li>
+          <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+          <a href="signup.html" class="pixel-button">Signup</a>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- main content -->
+  <div class="main-content">
+
+    <!-- Banner -->
+    <div class="banner">
+      <h5 class="fade-in pixel-text2">START YOUR</h5>
+      <h1 class="display-3 fw-bold fade-in pixel-text3">Coding<br>Adventure</h1>
+      <p class="mt-3 fade-in pixel-text5">The most fun and beginner-friendly way to learn to code.⋆˙⟡</p>
+      <a href="signup.html" class="pixel-gst fade-in">Get Started</a>
+      
+      <!-- HTML -->
+      <section class="supported-by fade-in">
+        <div class="container">
+          <span class="supported-text fade-in">SUPPORTED BY</span>
+          <div class="logos">
+            <img src="pics/Logo/Gemini-Logo2.PNG" alt="Gemini">
+            <img src="pics/Logo/Github-Logo2.PNG" alt="GitHub logo">
+            <img src="pics/Logo/ChatGPT-Logo3.PNG" alt="ChatGPT">
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Text body -->
+    <section class="courses-section">
+      <p class="pixel-text4">Journey through the<br>world of programming</p>
+      <p>Learn to code with fun, interactive courses handcrafted by industry experts and educators.</p>
+
+      <!-- Button -->
+      <div class="filter-buttons text-center">
+        <button class="btn active" onclick="filterCourses('popular')">Popular</button>
+        <button class="btn" onclick="filterCourses('web')">Web Development</button>
+        <button class="btn" onclick="filterCourses('data')">Data Science</button>
+        <button class="btn" onclick="filterCourses('tools')">Tools</button>
+      </div>
+    <br>
+
+      <!-- Card -->
+      <div class="container">
+        <div class="row row-cols-1 row-cols-md-3 g-4" id="courses-container">
+          
+          <!-- Popular Courses (default) -->
+          <div class="col course-card-group popular" onclick="location.href='/python.html'" style="cursor: pointer;">
+            <div class="course-card">
+              <img src="pics/card/pic1.webp" alt="Python">
+              <div class="p-3">
+                <small>COURSE</small>
+                <h5 class="mt-2">Python</h5>
+                <p>Learn programming fundamentals such as variables, control</p>
+                <small>BEGINNER</small>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col course-card-group popular" onclick="location.href='/HTML.html'" style="cursor: pointer;">
+            <div class="course-card">
+              <img src="pics/card/pic2.webp" alt="HTML">
+              <div class="p-3">
+                <small>COURSE</small>
+                <h5 class="mt-2">HTML</h5>
+                <p>Create your first website with HTML, the building blocks of website</p>
+                <small>BEGINNER</small>
+              </div>
+            </div>
+          </div>
+          <div class="col course-card-group popular" onclick="location.href='/CSS.html'" style="cursor: pointer;">
+            <div class="course-card">
+              <img src="pics/card/pic3.png" alt="CSS">
+              <div class="p-3">
+                <small>COURSE</small>
+                <h5 class="mt-2">CSS</h5>
+                <p>Use CSS selectors and properties to style your HTML pages...</p>
+                <small>BEGINNER</small>
+              </div>
+            </div>
+          </div>
+          <div class="col course-card-group popular" onclick="location.href='/JavaScript.html'" style="cursor: pointer;">
+            <div class="course-card">
+              <img src="pics/card/pic4.png" alt="JavaScript">
+              <div class="p-3">
+                <small>COURSE</small>
+                <h5 class="mt-2">JavaScript</h5>
+                <p>Learn variables, loops, functions, and events to build web</p>
+                <small>BEGINNER</small>
+              </div>
+            </div>
+          </div>
+          <div class="col course-card-group popular" onclick="location.href='/SQL.html'" style="cursor: pointer;">
+            <div class="course-card">
+              <img src="pics/card/pic5.webp" alt="SQL">
+              <div class="p-3">
+                <small>COURSE</small>
+                <h5 class="mt-2">SQL</h5>
+                <p>Learn database basics, queries, calculations, and more...</p>
+                <small>BEGINNER</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Web Development Courses -->
+          <div class="col course-card-group web" onclick="location.href='/HTML.html'" style="cursor: pointer;">
+            <div class="course-card">
+              <img src="pics/card/pic2.webp" alt="HTML">
+              <div class="p-3">
+                <small>COURSE</small>
+                <h5 class="mt-2">HTML</h5>
+                <p>Create your first website with HTML, the building blocks of website</p>
+                <small>BEGINNER</small>
+              </div>
+            </div>
+          </div>
+          <div class="col course-card-group web" onclick="location.href='/CSS.html'" style="cursor: pointer;">
+            <div class="course-card">
+              <img src="pics/card/pic3.png" alt="CSS">
+              <div class="p-3">
+                <small>COURSE</small>
+                <h5 class="mt-2">CSS</h5>
+                <p>Use CSS selectors and properties to style your HTML pages...</p>
+                <small>BEGINNER</small>
+              </div>
+            </div>
+          </div>
+          <div class="col course-card-group web" onclick="location.href='/JavaScript.html'" style="cursor: pointer;">
+            <div class="course-card">
+              <img src="pics/card/pic4.png" alt="JavaScript">
+              <div class="p-3">
+                <small>COURSE</small>
+                <h5 class="mt-2">JavaScript</h5>
+                <p>Learn variables, loops, functions, and events to build website with us</p>
+                <small>BEGINNER</small>
+              </div>
+            </div>
+          </div>
+          <div class="col course-card-group web" onclick="location.href='/React.html'" style="cursor: pointer;">
+            <div class="course-card">
+              <img src="pics/card/pic6.png" alt="React">
+              <div class="p-3">
+                <small>COURSE</small>
+                <h5 class="mt-2">React</h5>
+                <p>Get introduced in React, an open-source JavaScript-based web development lireary...</p>
+                <small>INTERMEDIATE</small>
+              </div>
+            </div>
+          </div>
+          <div class="col course-card-group web" onclick="location.href='/IntermediateJavaScript.html'" style="cursor: pointer;">
+            <div class="course-card">
+              <img src="pics/card/pic7.webp" alt="Intermediate JavaScript">
+              <div class="p-3">
+                <small>COURSE</small>
+                <h5 class="mt-2">Intermediate JavaScript</h5>
+                <p>Unleash the power of JavaScript with asynchronous programming.</p>
+                <small>INTERMEDIATE</small>
+              </div>
+            </div>
+          </div>
+          <div class="col course-card-group web" onclick="location.href='/p5.js.html'" style="cursor: pointer;">
+            <div class="course-card">
+              <img src="pics/card/pic8.webp" alt="p5.js">
+              <div class="p-3">
+                <small>COURSE</small>
+                <h5 class="mt-2">p5.js</h5>
+                <p>P5.js is a JavaScript library that makes coding accessible for artists, designers, and beginners.</p>
+                <small>INTERMEDIATE</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Data Science Courses -->
+          <div class="col course-card-group data" onclick="location.href='/python.html'" style="cursor: pointer;">
+            <div class="course-card">
+              <img src="pics/card/pic1.webp" alt="Python">
+              <div class="p-3">
+                <small>COURSE</small>
+                <h5 class="mt-2">Python</h5>
+                <p>Learn programming fundamentals such as variables, control</p>
+                <small>BEGINNER</small>
+              </div>
+            </div>
+          </div>
+          <div class="col course-card-group data" onclick="location.href='/IntermediatePython.html'" style="cursor: pointer;">
+            <div class="course-card">
+              <img src="pics/card/pic9.webp" alt="Intermediate Python">
+              <div class="p-3">
+                <small>COURSE</small>
+                <h5 class="mt-2">Intermediate Python</h5>
+                <p>Begin learning intermediate Python with data structures with our professor.</p>
+                <small>INTERMEDIATE</small>
+              </div>
+            </div>
+          </div>
+          <div class="col course-card-group data" onclick="location.href='/NumPy.html'" style="cursor: pointer;">
+            <div class="course-card">
+              <img src="pics/card/pic10.webp" alt="NumPy">
+              <div class="p-3">
+                <small>COURSE</small>
+                <h5 class="mt-2">NumPy</h5>
+                <p>Learn the fundamentals of data manipulation using NumPy! Learn to code using NumPy with Codédex -- for free!</p>
+                <small>INTERMEDIATE</small>
+              </div>
+            </div>
+          </div>
+          <div class="col course-card-group data" onclick="location.href='/SQL.html'" style="cursor: pointer;">
+            <div class="course-card">
+              <img src="pics/card/pic5.webp" alt="SQL">
+              <div class="p-3">
+                <small>COURSE</small>
+                <h5 class="mt-2">SQL</h5>
+                <p>Learn database basics, queries, calculations, and more...</p>
+                <small>BEGINNER</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tools Courses -->
+          <div class="col course-card-group tools" onclick="location.href='/CommandLine.html'" style="cursor: pointer;">
+            <div class="course-card">
+              <img src="pics/card/pic11.webp" alt="Command Line">
+              <div class="p-3">
+                <small>COURSE</small>
+                <h5 class="mt-2">Command Line</h5>
+                <p>Learn to navigate and manipulate your computer filesystem with the command line</p>
+                <small>BEGINNER</small>
+              </div>
+            </div>
+          </div>
+          <div class="col course-card-group tools" onclick="location.href='/Github.html'" style="cursor: pointer;">
+            <div class="course-card">
+              <img src="pics/card/pic12.webp" alt="Git & GitHub">
+              <div class="p-3">
+                <small>COURSE</small>
+                <h5 class="mt-2">Git & GitHub</h5>
+                <p>Learn to use Git for version control, and GitHub to collaborate on projects, track code changes</p>
+                <small>INTERMEDIATE</small>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    
+    <script>
+    function filterCourses(category) {
+      document.querySelectorAll('.filter-buttons .btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelector(`.filter-buttons .btn[onclick*="${category}"]`).classList.add('active');
+    
+      document.querySelectorAll('.course-card-group').forEach(group => {
+        group.style.display = 'none';
+      });
+      document.querySelectorAll(`.course-card-group.${category}`).forEach(group => {
+        group.style.display = 'block';
+      });
+    }
+
+          // 1. ดึง element และเก็บข้อความดิบ
+  const el = document.querySelector('.pixel-text4');
+  const text = el.innerText;
+  el.innerHTML = '';  // เคลียร์ก่อน
+
+  let i = 0;
+  function typeWriter() {
+    if (i < text.length) {
+      if (text[i] === '\n') {
+        el.innerHTML += '<br>';
+      } else {
+        el.innerHTML += text[i];
+      }
+      i++;
+      setTimeout(typeWriter, 100);
+    }
+  }
+
+  // 2. สร้าง observer เพื่อรอให้ element ปรากฏในหน้าจอ
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        typeWriter();           // เริ่ม effect
+        obs.unobserve(entry.target);  // รันแค่ครั้งเดียวแล้วเลิกสังเกต
+      }
+    });
+  }, { threshold: 0.1 });  // เริ่มเมื่อมองเห็น 10%
+
+  observer.observe(el);
+    </script>
+
+    <!-- 2nd Footer -->
+  <div class="pixel-scene">
+    <div class="overlay-text">
+      <h2>Ready to explore?</h2>
+      <a href="signup.html" class="pixel-gst">Start Learning for Free</a>
+    </div>
+  </div>
+
+  </div>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">CodéCraft</div>
+          <div class="mt-2">Made with ❤️ in Thailand, BKK</div>
+        </div>
+        <div class="footer-cols">
+
+          <!-- company -->
+          <div class="footer-section">
+            <h6>Company</h6>
+            <ul class="list-unstyled">
+              <li><a href="#">About</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Shop</a></li>
+              <li><a href="#">Community</a></li>
+              <li><a href="#">Help Center</a></li>
+              <li><a href="pricing.html">Pricing</a></li>
+            </ul>
+          </div>
+          <!-- Practice -->
+          <div class="footer-section">
+            <h6>Practice</h6>
+            <ul class="list-unstyled">
+              <li><a href="#">Challenges</a></li>
+              <li><a href="#">Projects</a></li>
+              <li><a href="#">#30NitesOfCode</a></li>
+            </ul>
+          </div>
+
+          <!-- Learn -->
+          <div class="footer-section">
+            <h6>Learn</h6>
+            <ul class="list-unstyled">
+              <li><a href="practice.html">All Courses</a></li>
+              <li><a href="python.html">Python</a></li>
+              <li><a href="IntermediatePython.html">Intermediate Python</a></li>
+              <li><a href="NumPy.html">NumPy</a></li>
+              <li><a href="SQL.html">SQL</a></li>
+              <li><a href="HTML.html">HTML</a></li>
+              <li><a href="CSS.html">CSS</a></li>
+            </ul>
+          </div>
+
+          <!-- Languages -->
+          <div class="footer-section">
+            <h6>Languages</h6>
+            <ul class="list-unstyled">
+              <li><a href="JavaScript.html">JavaScript</a></li>
+              <li><a href="IntermediateJavaScript.html">Intermediate JavaScript</a></li>
+              <li><a href="React.html">React</a></li>
+              <li><a href="CommandLine.html">Command Line</a></li>
+              <li><a href="Github.html">Git & GitHub</a></li>
+              <li><a href="p5.js.html">p5.js</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Copyright -->
+      <div class="footer-meta">
+        <div class="copyright">
+          <small>© 2025 Codecraft, Inc. · <a href="#">Terms</a> · <a href="#">Privacy Policy</a></small>
+        </div>
+        <!-- Footer Icons -->
+        <div class="social-icons">
+          <img src="pics/icons/icons8-facebook-128.png" alt="Facebook">
+          <img src="pics/icons/icons8-instagram-32.png" alt="Instagram">
+          <img src="pics/icons/icons8-x-32.png" alt="X">
+          <img src="pics/icons/icons8-github-32.png" alt="GitHub">
+          <img src="pics/icons/icons8-youtube-32.png" alt="YouTube">
+          <img src="pics/icons/icons8-linkedin-32.png" alt="LinkedIn">
+          <img src="pics/icons/icons8-line-32.png" alt="Line">
+          <img src="pics/icons/icons8-spotify-32.png" alt="Spotify">
+          <img src="pics/icons/icons8-discord-new-32.png" alt="Discord">
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

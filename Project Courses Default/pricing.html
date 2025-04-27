@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="base.css">
+
+  <style>
+    :root {
+      --purple-light: #5B15CB;
+      --purple-dark: #20004f;
+      --text-light: #ffff;
+      --card-bg: #111;
+      --highlight: #ffd700;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Roboto', sans-serif;
+    }
+    .main-con{
+      background: linear-gradient(180deg, var(--purple-light) 0%, var(--purple-dark) 100%);
+      color: var(--text-light);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    h1 {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 2rem;
+      margin-bottom: .5rem;
+      text-align: center;
+    }
+    p.subtitle {
+      text-align: center;
+      max-width: 40rem;
+      margin-bottom: 2rem;
+    }
+    .inter-text{
+      font-family: 'Inter';
+      color: #ffff;
+    }
+    .toggle {
+      display: flex;
+      width: max-content;
+      margin: 0 auto 3rem;
+      background: rgba(255,255,255,0.2);
+      border-radius: 2rem;
+      overflow: hidden;
+    }
+    .toggle button {
+      background: none;
+      border: none;
+      color: var(--text-light);
+      padding: .75rem 1.5rem;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background .3s;
+    }
+    .toggle button.active {
+      background: var(--text-light);
+      color: var(--purple-dark);
+    }
+    .cards {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+      max-width: 960px;
+    }
+    .card {
+      background: var(--card-bg);
+      padding: 2rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: .5rem;
+      position: relative;
+      flex: 1 1 18rem;
+      max-width: 20rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform .3s;
+    }
+    .card:hover { transform: translateY(-5px); }
+    .card.highlight {
+      border-color: var(--highlight);
+      box-shadow: 0 0 20px var(--highlight);
+    }
+    .badge {
+      position: absolute;
+      top: -1rem;
+      right: -1rem;
+      background: var(--highlight);
+      color: #000;
+      font-size: .75rem;
+      padding: .25rem .75rem;
+      border-radius: 2rem;
+      text-transform: uppercase;
+    }
+    .badge-monthly { display: none; }
+    body[data-billing='monthly'] .badge-monthly { display: block; }
+    body[data-billing='monthly'] .badge-yearly { display: none; }
+    .badge-yearly { display: block; }
+    .card h2 {
+      font-size: 1.25rem;
+      margin-bottom: .5rem;
+      text-transform: uppercase;
+    }
+    .price {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 2rem;
+      margin: .5rem 0 1rem;
+    }
+    .price span {
+      font-size: 0.75rem;
+      margin-left: .25rem;
+    }
+    .features {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+    .features li {
+      margin-bottom: .5rem;
+      display: flex;
+      align-items: center;
+    }
+    .features li::before {
+      content: "✓";
+      display: inline-block;
+      margin-right: .5rem;
+      color: var(--highlight);
+    }
+    .btn {
+      background: var(--highlight);
+      color: #000;
+      border: 2px solid #000;
+      padding: 1rem 0;
+      width: 100%;
+      text-decoration: none;
+      text-align: center;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      display: block;
+      border-radius: 4px;
+      box-shadow: inset 0 -4px 0 rgba(0,0,0,0.2);
+      transition: transform 0.1s, box-shadow 0.1s;
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: inset 0 -6px 0 rgba(0,0,0,0.2);
+    }
+    .btn:active {
+      transform: translateY(0);
+      box-shadow: inset 0 -2px 0 rgba(0,0,0,0.2);
+    }
+    .price-monthly { display: none; }
+    body[data-billing='monthly'] .price-monthly { display: inline; }
+    body[data-billing='monthly'] .price-yearly { display: none; }
+
+    .rainbow-text {
+  font-size: 3rem;
+  font-weight: bold;
+  /* 1) สร้าง gradient สายรุ้ง */
+  background: linear-gradient(
+    90deg,
+    red, orange, yellow, green, blue, indigo, violet
+  );
+  /* 2) ตัด background ให้แค่ตัวอักษร */
+  -webkit-background-clip: text;
+  background-clip: text;
+  /* 3) ซ่อนสีตัวอักษรหลัก */
+  color: transparent;
+}
+
+/* (ถ้าอยากให้ไล่สีวิ่งได้) */
+@keyframes rainbow {
+  0%   { background-position: 0%   50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0%   50%; }
+}
+
+.rainbow-text.animate {
+  background-size: 200% 200%;
+  animation: rainbow 4s ease infinite;
+}
+
+.avatar-row {
+  display: flex;           /* จัดให้เป็นแถวเดียว */
+  align-items: center;     /* จัดกึ่งกลางแนวตั้ง */
+  gap: 0.5rem;             /* ช่องว่างระหว่างรูปกับข้อความ */
+}
+
+.avatar-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0;               /* เอา margin-left 200px ออก */
+  margin-left: 80px;
+}
+
+.avatar-icon2 {
+  width: 60px;
+  height: 60px;
+  margin: 0;               /* เอา margin-left 200px ออก */
+  margin-left: 130px;
+}
+.avatar-row h2 {
+  margin: 0;               /* เคลียร์ margin ของ h2 */
+}
+
+  </style>
+
+</head>
+
+<body data-billing="yearly">
+  
+  <!-- Navbar -->
+<div class="main-con">
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand pixel-text" href="base.html">CodéCraft</a>
+      <div class="collapse navbar-collapse justify-content-end">
+        <ul class="navbar-nav">
+          <!-- Learn -->
+          <li class="nav-item dropdown position-static">
+            <a class="nav-link dropdown-toggle" href="#" id="learnDropdown"
+               role="button" data-bs-toggle="dropdown" aria-expanded="false">Learn</a>
+               <div class="dropdown-menu p-4 border-0 shadow"
+                    aria-labelledby="learnDropdown">
+              <div class="container">
+                <div class="row">
+                  <!-- Column: Recommended -->
+                  <div class="col-md-4">
+                    <h6 class="text-uppercase mb-3">Recommended</h6>
+                    <a class="dropdown-item d-flex align-items-center py-2" href="python.html">
+                      <img src="pics/card/pic1.webp" width="36" class="me-2 rounded">
+                      <div>
+                        <div class="fw-bold">Python</div>
+                        <small class="text-white">Learn the basics…</small>
+                      </div>
+                    </a>
+                    <a class="dropdown-item d-flex align-items-center py-2" href="HTML.html">
+                      <img src="pics/card/pic2.webp" width="36" class="me-2 rounded">
+                      <div>
+                        <div class="fw-bold">HTML</div>
+                        <small class="text-white">Create your first website…</small>
+                      </div>
+                    </a>
+                    <a href="practice.html" class="pixel-allcourses">All Courses →</a>
+                  </div>
+                  <!-- Column: Data Science -->
+                  <div class="col-md-2">
+                    <h6 class="text-uppercase mb-3">Data Science</h6>
+                    <a class="dropdown-item py-1" href="python.html">Python</a>
+                    <a class="dropdown-item py-1" href="IntermediatePython.html">Intermediate Python</a>
+                    <a class="dropdown-item py-1" href="NumPy.html">NumPy</a>
+                    <a class="dropdown-item py-1" href="SQL.html">SQL</a>
+                  </div>
+                  <!-- Column: Web Development -->
+                  <div class="col-md-2">
+                    <h6 class="text-uppercase mb-3">Web Dev</h6>
+                    <a class="dropdown-item py-1" href="HTML.html">HTML</a>
+                    <a class="dropdown-item py-1" href="CSS.html">CSS</a>
+                    <a class="dropdown-item py-1" href="JavaScript.html">JavaScript</a>
+                    <a class="dropdown-item py-1" href="React.html">React</a>
+                    <a class="dropdown-item py-1" href="p5.js.html">p5.js</a>
+                  </div>
+                  <!-- Column: Tools -->
+                  <div class="col-md-2">
+                    <h6 class="text-uppercase mb-3">Tools</h6>
+                    <a class="dropdown-item py-1" href="CommandLine.html">Command Line</a>
+                    <a class="dropdown-item py-1" href="Github.html">Git & GitHub</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="practice.html">Practice</a></li>
+          <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+          <a href="signup.html" class="pixel-button">Signup</a>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <div class="main-content">
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1>Join the Club!</h1>
+    <p class="subtitle inter-text">Unlock your full potential with our tailored plans designed for every stage of your coding journey.</p>
+    <div class="toggle inter-text">
+      <button class="active" data-period="yearly">Yearly</button>
+      <button data-period="monthly">Monthly</button>
+    </div>
+    <div class="cards">
+      <!-- Explorer Card -->
+      <div class="card inter-text">
+        <div class="avatar-row">
+          <h2>Explorer</h2>
+          <img class="avatar-icon" src="pics/avatar/boy-working.png" alt="#">
+        </div>
+        <div class="price price-yearly">Free<span>/forever</span></div>
+        <div class="price price-monthly">Free<span>/forever</span></div>
+        <ul class="features">
+          <li>Access to first few chapters in many courses</li>
+          <li>Access to community and events</li>
+        </ul>
+        <a href="#" class="btn">Start for Free</a>
+      </div>
+      <!-- Club Card -->
+      <div class="card highlight inter-text">
+        <div class="badge badge-yearly">SAVE 36%</div>
+        <div class="badge badge-monthly">POPULAR</div>
+        <div class="avatar-row">
+          <h2 class="rainbow-text animate">Club</h2>
+          <img class="avatar-icon2" src="pics/avatar/girl-working.png" alt="#">
+        </div>
+        <div class="price price-yearly">$7.99<span>/mo</span></div>
+        <div class="price price-monthly">$12.99<span>/mo</span></div>
+        <ul class="features">
+          <li>Full access to Club-only content</li>
+          <li>One-on-one support from experts</li>
+          <li>And more!</li>
+        </ul>
+        <a href="#" class="btn">Join Club</a>
+      </div>
+    </div>
+    <script>
+      // Toggle billing period
+      document.querySelectorAll('.toggle button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.body.setAttribute('data-billing', btn.dataset.period);
+          document.querySelectorAll('.toggle button').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+        });
+      });
+    </script>
+  </div>
+</div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">CodéCraft</div>
+          <div class="mt-2">Made with ❤️ in Thailand, BKK</div>
+        </div>
+        <div class="footer-cols">
+
+          <!-- company -->
+          <div class="footer-section">
+            <h6>Company</h6>
+            <ul class="list-unstyled">
+              <li><a href="#">About</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Shop</a></li>
+              <li><a href="#">Community</a></li>
+              <li><a href="#">Help Center</a></li>
+              <li><a href="pricing.html">Pricing</a></li>
+            </ul>
+          </div>
+          <!-- Practice -->
+          <div class="footer-section">
+            <h6>Practice</h6>
+            <ul class="list-unstyled">
+              <li><a href="#">Challenges</a></li>
+              <li><a href="#">Projects</a></li>
+              <li><a href="#">#30NitesOfCode</a></li>
+            </ul>
+          </div>
+
+          <!-- Learn -->
+          <div class="footer-section">
+            <h6>Learn</h6>
+            <ul class="list-unstyled">
+              <li><a href="practice.html">All Courses</a></li>
+              <li><a href="python.html">Python</a></li>
+              <li><a href="IntermediatePython.html">Intermediate Python</a></li>
+              <li><a href="NumPy.html">NumPy</a></li>
+              <li><a href="SQL.html">SQL</a></li>
+              <li><a href="HTML.html">HTML</a></li>
+              <li><a href="CSS.html">CSS</a></li>
+            </ul>
+          </div>
+
+          <!-- Languages -->
+          <div class="footer-section">
+            <h6>Languages</h6>
+            <ul class="list-unstyled">
+              <li><a href="JavaScript.html">JavaScript</a></li>
+              <li><a href="IntermediateJavaScript.html">Intermediate JavaScript</a></li>
+              <li><a href="React.html">React</a></li>
+              <li><a href="CommandLine.html">Command Line</a></li>
+              <li><a href="Github.html">Git & GitHub</a></li>
+              <li><a href="p5.js.html">p5.js</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Copyright -->
+      <div class="footer-meta">
+        <div class="copyright">
+          <small>© 2025 Codecraft, Inc. · <a href="#">Terms</a> · <a href="#">Privacy Policy</a></small>
+        </div>
+        <!-- Footer Icons -->
+        <div class="social-icons">
+          <img src="pics/icons/icons8-facebook-128.png" alt="Facebook">
+          <img src="pics/icons/icons8-instagram-32.png" alt="Instagram">
+          <img src="pics/icons/icons8-x-32.png" alt="X">
+          <img src="pics/icons/icons8-github-32.png" alt="GitHub">
+          <img src="pics/icons/icons8-youtube-32.png" alt="YouTube">
+          <img src="pics/icons/icons8-linkedin-32.png" alt="LinkedIn">
+          <img src="pics/icons/icons8-line-32.png" alt="Line">
+          <img src="pics/icons/icons8-spotify-32.png" alt="Spotify">
+          <img src="pics/icons/icons8-discord-new-32.png" alt="Discord">
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+
+</html>

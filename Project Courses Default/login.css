@@ -1,0 +1,544 @@
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: url('pics/signup/background/assets_task_01jsnyjadpec394tnzcqyjhsyr_1745567192_img_0.webp') center/cover no-repeat;
+    background-color: #0d0c2c;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .signup-container {
+    text-align: center;
+  }
+  
+  .signup-box {
+    background: white;
+    border-radius: 10px;
+    padding: 30px 40px;
+    max-width: 400px;
+    box-shadow: 0 8px 0 #888;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .icon {
+    width: 60px;
+    image-rendering: pixelated;
+  }
+  
+  .bubble {
+    background: #f0f0ff;
+    border-radius: 10px;
+    padding: 10px 15px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: #333;
+    box-shadow: 2px 2px 0 #999;
+  }
+  
+  .oauth-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .oauth-buttons button {
+    flex: 1;
+    padding: 10px;
+    font-weight: 600;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #fff;
+    cursor: pointer;
+  }
+  
+  .divider {
+    margin: 15px 0;
+    font-size: 0.8rem;
+    color: #999;
+    position: relative;
+  }
+  
+  .divider::before,
+  .divider::after {
+    content: "";
+    height: 1px;
+    background: #ddd;
+    position: absolute;
+    top: 50%;
+    width: 40%;
+  }
+  
+  .divider::before {
+    left: 0;
+  }
+  
+  .divider::after {
+    right: 0;
+  }
+  
+  .form-box input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+  
+  .signup-btn {
+    background-color: #6ca0f6;
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 6px;
+    box-shadow: 2px 2px 0 #444;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .terms, .login-link {
+    font-size: 0.75rem;
+    color: #777;
+    margin-top: 10px;
+  }
+  .terms a, .login-link a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  /* กำหนดให้ html และ body มีความสูงเต็ม 100% ของ viewport */
+html, body {            /* ตั้งค่ารากฐาน */
+  height: 100%;         /* ความสูงเต็มหน้าจอ */
+}
+
+/* กำหนดค่าพื้นฐานให้กับ body */
+body {
+  display: flex;                 /* ใช้ Flexbox layout */
+  flex-direction: column;        /* จัดเรียงลูกแนวตั้ง */
+  background-color: #0a0919;     /* สีพื้นหลังเข้ม */
+  color: #fff;                   /* สีตัวอักษรขาว */
+  font-family: 'Inter', sans-serif; /* ฟอนต์หลักแบบไม่มีเชิง */
+  margin: 0;                     /* ไม่มีระยะขอบ */
+  font-size: 1rem;               /* ขนาดฟอนต์เริ่มต้น */
+}
+
+/* โซนเนื้อหาหลักของเว็บ */
+.main-content {
+  flex: 1 0 auto;                /* ขยายตามเนื้อหา เหลือพื้นที่ให้ footer */
+  font-family: Georgia, serif;  /* ฟอนต์ต่างจาก body เพื่อความโดดเด่น */
+}
+
+/* ส่วนท้ายเว็บ */
+.footer {
+  flex-shrink: 0;                /* ไม่ย่อตัวเมื่อพื้นที่จำกัด */
+  background-color: #0a0a1b;     /* สีพื้นหลัง footer */
+  color: #d4d4d4;                /* สีข้อความอ่อน ๆ */
+  padding: 3rem 2rem;            /* ระยะห่างภายใน */
+  font-size: 0.9rem;             /* ขนาดข้อความเล็กน้อย */
+}
+.footer a {
+  color: #fff;                   /* สีลิงก์เป็นขาว */
+  text-decoration: none;        /* ไม่มีเส้นใต้ */
+  font-weight: 400;             /* น้ำหนักฟอนต์ปกติ */
+}
+.footer a:hover {
+  text-decoration: underline;   /* มีเส้นใต้เมื่อ hover */
+}
+.footer .footer-logo {
+  font-family: 'Press Start 2P';
+  font-size: 1.25rem;           /* ขนาดโลโก้ */
+  font-weight: 600;             /* ฟอนต์หนาปานกลาง */
+  color: #fff;                  /* สีขาว */
+  margin-bottom: 0.5rem;        /* ระยะห่างด้านล่าง */
+}
+.footer h6 {
+  font-size: 0.75rem;           /* ขนาดหัวข้อเล็ก */
+  color: #aaa;                  /* สีเทาอ่อน */
+  text-transform: uppercase;    /* ตัวพิมพ์ใหญ่ทั้งหมด */
+  letter-spacing: 1px;          /* ระยะห่างระหว่างตัวอักษร */
+  font-weight: 600;             /* หนา */
+  margin-bottom: 1rem;          /* ระยะห่างด้านล่าง */
+}
+.footer ul {
+  padding-left: 0;              /* ลบ padding ด้านซ้าย */
+}
+.footer ul li {
+  list-style: none;             /* ลบ bullet point */
+  margin-bottom: 0.5rem;        /* ระยะห่างระหว่างบรรทัด */
+}
+.footer .social-icons img {
+  width: 28px;                  /* กำหนดขนาดไอคอน */
+  margin-right: 8px;            /* ระยะห่างระหว่างไอคอน */
+}
+.footer .text-center small {
+  color: #888;                  /* สีเทาอ่อนมาก */
+}
+.footer .footer-top {
+  display: flex;                /* Flexbox เพื่อจัดกล่องเนื้อหา */
+  flex-wrap: wrap;              /* ห่อบรรทัดเมื่อเต็ม */
+  justify-content: space-between; /* กระจายเต็มพื้นที่ */
+  align-items: flex-start;      /* จัดเรียงบนสุด */
+  gap: 2rem;                    /* ช่องว่างระหว่างกล่อง */
+}
+.footer .footer-cols {
+  display: flex;                /* Flexbox */
+  gap: 3rem;                    /* ช่องว่างระหว่างคอลัมน์ */
+  flex-wrap: wrap;              /* ห่อบรรทัด */
+}
+.footer .footer-section {
+  min-width: 120px;             /* ความกว้างขั้นต่ำของคอลัมน์ */
+}
+.footer .footer-meta {
+  display: flex;                /* Flexbox */
+  justify-content: space-between; /* กระจายซ้ายขวา */
+  align-items: center;          /* จัดกลางแนวตั้ง */
+  flex-wrap: wrap;              /* ห่อถ้าไม่พอ */
+  margin-top: 2rem;             /* ระยะห่างด้านบน */
+}
+.footer .footer-meta .copyright {
+  color: #888;                  /* สีเทาอ่อน */
+}
+.footer .footer-meta .social-icons {
+  margin-top: 1rem;             /* ระยะห่างด้านบน */
+}
+
+/* แถบเมนูด้านบนสุด */
+.navbar {
+  position: fixed;              /* ติดอยู่ด้านบนหน้าจอ */
+  top: 0;
+  width: 100%;
+  z-index: 1000;                /* อยู่เหนือทุก element */
+  background-color: #09081a;    /* สีพื้นหลังเข้ม */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6); /* เงา */
+  padding: 0.75rem 2rem;        /* ช่องว่างภายใน */
+  border-bottom: 1px solid #1d1b30; /* เส้นขอบล่าง */
+}
+
+.navbar .nav-link {
+  color: #fff;                 /* ลิงก์สีขาว */
+  font-weight: 500;           /* หนาปานกลาง */
+  margin: 0 0.5rem;           /* ช่องว่างซ้ายขวา */
+}
+.navbar .nav-link:hover {
+  color: #f7d046;             /* เปลี่ยนสีเมื่อ hover */
+}
+
+/* แบนเนอร์หลักด้านบน */
+.banner {
+  position: relative;
+  background-image: url('pics/banner/background5.webp');
+  background-size: cover;     /* ปรับขนาดภาพให้ครอบคลุม */
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;              /* เต็มความสูงจอ */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* เริ่มต้นด้านบน */
+  align-items: center;         /* จัดกึ่งกลางแนวนอน */
+  text-align: center;          /* จัดข้อความกึ่งกลาง */
+  padding: 20vh 2rem 0;        /* ขอบด้านบน 20% ของจอ */
+  overflow: hidden;
+}
+.banner::after {
+  content: "";                /* เพิ่มชั้นพื้นหลังไล่สี */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to bottom, rgba(10, 9, 25, 0) 0%, rgba(10, 9, 25, 1) 100%);
+  pointer-events: none;
+}
+.banner > * {
+  position: relative;         /* ให้ลูกอยู่ด้านบนพื้นหลัง */
+  z-index: 1;
+}
+
+/* เอฟเฟกต์แสดงผล fade-in */
+.fade-in {
+  opacity: 0;                  /* เริ่มต้นมองไม่เห็น */
+  transform: translateY(20px); /* ขยับลง */
+  animation: fadeInUp 1s ease-out forwards; /* ค่อย ๆ ปรากฏ */
+  animation-delay: 0.4s;       /* หน่วงเวลา */
+}
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ขนาดของ heading */
+h1 {
+  font-size: 4rem;
+}
+h5 {
+  font-size: 1.5rem;
+}
+p.lead {
+  font-size: 1.5rem;
+}
+
+/* โซนแสดงคอร์ส */
+.courses-section {
+  font-family: Inter;
+  padding: 5rem 2rem;
+  background-color: #0a0919;
+  text-align: center;
+}
+.courses-section h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+}
+.courses-section p {
+  color: #bcbccf;
+  margin-bottom: 2rem;
+}
+
+/* ปุ่มกรองคอร์ส */
+.filter-buttons .btn {
+  margin: 0.25rem;
+  border-radius: 20px;
+  background-color: #14132b;
+  color: #fff;
+  border: 1px solid #2e2e46;
+  padding: 0.4rem 1.2rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.filter-buttons .btn.active {
+  background-color: #f7d046;
+  color: #000;
+  border-color: #f7d046;
+  box-shadow: 2px 2px 0px #caa536;
+}
+
+/* การ์ดแสดงคอร์ส */
+.course-card {
+  background-color: #0e0e1d;
+  border: 1px solid #2b2b3c;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.course-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.6);
+}
+.course-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+.course-card .p-3 {
+  padding: 1rem 1.25rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.course-card small {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  background-color: #1f1e2e;
+  font-size: 0.68rem;
+  color: #cccde2;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+.course-card h5 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  margin-top: 0.5rem;
+  margin-bottom: 0.3rem;
+}
+.course-card p {
+  font-size: 0.85rem;
+  color: #bcbccf;
+  line-height: 1.4;
+  margin: 0;
+}
+.course-card-group {
+  display: none;
+}
+.course-card-group.popular {
+  display: block;
+}
+
+.pixel-text {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 24px;
+  color: #f7d046;
+  text-shadow:
+    2px 2px 0 #000,
+    0 0 5px #f7d046,
+    0 0 10px #aaa;
+}
+
+.pixel-text2 {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 20px;
+  color: #ffffff;
+}
+
+.pixel-text3 {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 90px;
+  background: linear-gradient(180deg, #ffffff 0%, #f7d046 100%);
+  /* ตัดพื้นหลังให้แสดงเฉพาะข้อความ */
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.pixel-text4 {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 30px;
+  color: white;
+}
+
+.pixel-text5 {
+  font-family: 'Inter', monospace;
+  font-size: 19px;
+  color: white;
+}
+
+
+
+/* ปุ่ม Get start */
+
+.pixel-gst {
+background-color: #f7d51d; /* สีเหลือง */
+border: none; /* ลบเส้นขอบเริ่มต้น */
+color: black; /* สีตัวอักษร */
+/* ใช้ Padding และ Font Size ที่ใหญ่ขึ้นสำหรับปุ่มหลัก */
+padding: 15px 30px; /* ขนาดช่องว่างภายในปุ่ม */
+font-family: 'Press Start 2P', cursive; /* ใช้ฟอนต์พิกเซล */
+font-size: 16px; /* ขนาดตัวอักษร */
+cursor: pointer; /* เปลี่ยน cursor เป็นรูปมือ */
+text-align: center;
+text-decoration: none;
+display: inline-block;
+margin: 4px 2px;
+vertical-align: middle; /* ช่วยจัดกลางถ้ามี element อื่นข้างๆ */
+
+/* สร้างเอฟเฟกต์เงา/ขอบแบบพิกเซล */
+box-shadow:
+  /* เงาหลักด้านล่างขวา */
+  4px 4px 0px 0px #E59400,
+  /* เส้นขอบ */
+  0px -2px 0px 0px black,
+  0px 2px 0px 0px black,
+  -2px 0px 0px 0px black,
+  2px 0px 0px 0px black;
+
+position: relative;
+top: 0;
+left: 0;
+}
+
+/* เอฟเฟกต์เมื่อเมาส์ชี้ */
+.pixel-gst:hover {
+background-color: #f2c409;
+box-shadow:
+  4px 4px 0px 0px #E59400,
+  0px -2px 0px 0px black,
+  0px 2px 0px 0px black,
+  -2px 0px 0px 0px black,
+  2px 0px 0px 0px black;
+}
+
+/* เอฟเฟกต์เมื่อกดปุ่ม */
+.pixel-gst:active {
+top: 2px; /* ขยับลง */
+left: 2px; /* ขยับขวา */
+box-shadow:
+  2px 2px 0px 0px #E59400, /* ลดเงา */
+  0px -2px 0px 0px black,
+  0px 2px 0px 0px black,
+  -2px 0px 0px 0px black,
+  2px 0px 0px 0px black;
+}
+
+/* ปุ่ม Get start */
+
+.pixel-button {
+background-color: #f7d51d; /* สีเหลือง */
+border: none; /* ลบเส้นขอบเริ่มต้น */
+color: black; /* สีตัวอักษร */
+/* ปรับ Padding ให้น้อยลง */
+padding: 10px 20px; /* ลดช่องว่างภายใน (แนวตั้ง 10px, แนวนอน 20px) */
+font-family: 'Press Start 2P', cursive; /* ใช้ฟอนต์พิกเซล */
+/* ปรับ Font Size ให้เล็กลง */
+font-size: 12px; /* ลดขนาดตัวอักษร */
+cursor: pointer; /* เปลี่ยน cursor เป็นรูปมือ */
+text-align: center;
+text-decoration: none;
+display: inline-block; /* ทำให้ padding และ margin ใช้งานได้ถูกต้อง */
+margin: 4px 2px;
+vertical-align: middle; /* จัดให้อยู่กึ่งกลางแนวตั้งเทียบกับข้อความข้างๆ */
+
+/* สร้างเอฟเฟกต์เงา/ขอบแบบพิกเซล (อาจต้องปรับเล็กน้อยถ้าต้องการ) */
+box-shadow:
+  /* เงาหลักด้านล่างขวา */
+  3px 3px 0px 0px #E59400, /* ลดขนาดเงาเล็กน้อย */
+  /* เส้นขอบ */
+  0px -2px 0px 0px black,
+  0px 2px 0px 0px black,
+  -2px 0px 0px 0px black,
+  2px 0px 0px 0px black;
+
+position: relative; /* จำเป็นสำหรับการขยับเมื่อกด */
+top: 0;
+left: 0;
+}
+
+/* เอฟเฟกต์เมื่อเมาส์ชี้ */
+.pixel-button:hover {
+background-color: #f2c409; /* สีเหลืองสว่างขึ้น */
+box-shadow:
+  3px 3px 0px 0px #E59400,
+  0px -2px 0px 0px black,
+  0px 2px 0px 0px black,
+  -2px 0px 0px 0px black,
+  2px 0px 0px 0px black;
+}
+
+/* เอฟเฟกต์เมื่อกดปุ่ม */
+.pixel-button:active {
+top: 1px; /* ลดระยะขยับ */
+left: 1px; /* ลดระยะขยับ */
+/* ลดเงาลงเมื่อกด */
+box-shadow:
+  2px 2px 0px 0px #E59400, /* ลดขนาดเงาเมื่อกด */
+  0px -2px 0px 0px black,
+  0px 2px 0px 0px black,
+  -2px 0px 0px 0px black,
+  2px 0px 0px 0px black;
+}
+
+
+
+
+  
